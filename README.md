@@ -4,7 +4,10 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 
 ## Features
 
-- NodeJS 18.
+- [Next.js](https://nextjs.org/) with App Router support
+- Type checing with [TypeScript](https://www.typescriptlang.org/)
+- [Prettier](https://prettier.io/) for code formatting
+- Opinionated ESLint rules by Tailor Technologies ([@tailor-platform/dev-config](https://www.npmjs.com/package/@tailor-platform/dev-config))
 - [pnpm](https://pnpm.io) for package management.
 - [graphql-codegen](https://the-guild.dev/graphql/codegen) to auto-generate code based on your Tailor application's GraphQL schema and operations.
 
@@ -33,7 +36,6 @@ pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ## Codegen
 

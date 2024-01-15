@@ -36,6 +36,8 @@
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-react-apollo": "^4.1.0",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@tailor-platform/dev-config": "^0.5.0",
+    "prettier": "^3.2.2",
     "ts-node": "^10.9.1",
     "typescript": "5.2.2"
   },
