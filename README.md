@@ -99,4 +99,5 @@ pnpm run codegen
 By the preset in this starter, the command above will generate the two files as follows:
 
 * `src/types/graphql.ts` ... a file with TypeScript definition of GraphQL schema
-* `src/graphql/schema.generated.ts` ... a file with a set of functions to call your Tailor application's API easily.
+* `src/graphql/schema.generated.ts` ... a file with a set of functions to call your Tailor application's API easily. 
+  * This file is expected to be imported from pages/components to query data from and mutate data on GraphQL API backend.
