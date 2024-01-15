@@ -8,12 +8,19 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 - Type checing with [TypeScript](https://www.typescriptlang.org/)
 - [Prettier](https://prettier.io/) for code formatting
 - Opinionated ESLint rules by Tailor Technologies ([@tailor-platform/dev-config](https://www.npmjs.com/package/@tailor-platform/dev-config))
-- [pnpm](https://pnpm.io) for package management.
 - [graphql-codegen](https://the-guild.dev/graphql/codegen) to auto-generate code based on your Tailor application's GraphQL schema and operations.
+
+## Requirement
+
+* Node.js 18+ and pnpm
 
 ## Getting Started
 
-### Setup
+Run the following command on your local environment:
+
+```
+git clone --depth=1 https://github.com/tailor-platform/tailor-nextjs-starter.git your-project-name
+```
 
 Enable Corepack to use [pnpm](https://pnpm.io/) as a package manager.
 
@@ -27,9 +34,7 @@ Install the dependencies:
 pnpm install
 ```
 
-### Develop
-
-Start the development server with:
+Then, you can now start your development server with:
 
 ```bash
 pnpm run dev
