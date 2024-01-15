@@ -32,7 +32,8 @@ const config: CodegenConfig = {
   },
   schema: "https://crm-gzgixosz.erp.dev/query",
   generates: {
-    "src/types/graphqlTypes.ts": {
+    "src/types/graphql.ts": {
+      config: generateConfig,
       plugins: [
         "typescript",
         {
@@ -51,7 +52,7 @@ const config: CodegenConfig = {
       preset: "near-operation-file",
       presetConfig: {
         extentensions: ".generated.tsx",
-        baseTypesPath: "../types/generated.ts",
+        baseTypesPath: "../types/graphql.ts",
       },
       config: generateConfig,
       plugins: [
