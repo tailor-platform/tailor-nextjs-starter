@@ -1,0 +1,17 @@
+query getLeads(
+  $from: Int
+  $size: Int
+  $query: LeadQueryInput
+  $order: [LeadOrderInput]
+) {
+  leads(from: $from, size: $size, query: $query, order: $order) {
+    total 
+    collection {
+      id
+      stage
+      companyName
+      leadSource
+      dealAmount
+    }
+  }
+}
