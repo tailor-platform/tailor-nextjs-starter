@@ -30,6 +30,7 @@ const config: CodegenConfig = {
   hooks: {
     afterAllFileWrite: ["eslint --fix", "prettier --write"],
   },
+  // FIXME: use your own GQL backend instead
   schema: "https://crm-gzgixosz.erp.dev/query",
   generates: {
     "src/types/graphql.ts": {
