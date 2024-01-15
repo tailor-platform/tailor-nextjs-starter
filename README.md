@@ -1,6 +1,18 @@
-# tailor-nextjs-starter
+# tailor-nextjs-starter <!-- omit in toc -->
 
 This is a base [Next.js](https://nextjs.org/) application to get you started developing a frontend for your Tailor application.
+
+## Table of Contents <!-- omit in toc -->
+
+- [Features](#features)
+- [Requirement](#requirement)
+- [Structure](#structure)
+  - [Components](#components)
+- [Getting Started](#getting-started)
+  - [Setup](#setup)
+  - [Run](#run)
+- [Codegen](#codegen)
+
 
 ## Features
 
@@ -45,7 +57,7 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 └── tsconfig.json                   # TypeScript configuration
 ```
 
-## Components
+### Components
 
 Our starter adopts Atomic-Design like structure under `components` directory. This is our recommendation, but optional to be used.
 
@@ -66,6 +78,8 @@ Run the following command on your local environment:
 git clone --depth=1 https://github.com/tailor-platform/tailor-nextjs-starter.git your-project-name
 ```
 
+### Setup
+
 Enable Corepack to use [pnpm](https://pnpm.io/) as a package manager.
 
 ```
@@ -77,6 +91,8 @@ Install the dependencies:
 ```bash
 pnpm install
 ```
+
+### Run
 
 Then, you can now start your development server with:
 
