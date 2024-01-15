@@ -14,6 +14,9 @@
     "pnpm": "8.10.0"
   },
   "dependencies": {
+    "@ark-ui/react": "~1.1.0",
+    "@tailor-platform/datagrid": "^0.5.1",
+    "@tailor-platform/design-systems": "^0.11.0",
     "@types/node": "18.18.10",
     "@types/react": "18.2.35",
     "@types/react-dom": "18.2.14",
@@ -36,6 +39,7 @@
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-react-apollo": "^4.1.0",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@pandacss/dev": "^0.18.2",
     "@tailor-platform/dev-config": "^0.5.0",
     "prettier": "^3.2.2",
     "ts-node": "^10.9.1",
