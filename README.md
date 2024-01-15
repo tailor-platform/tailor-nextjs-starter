@@ -10,9 +10,9 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 - Opinionated ESLint rules by Tailor ([@tailor-platform/dev-config](https://www.npmjs.com/package/@tailor-platform/dev-config))
 - [graphql-codegen](https://the-guild.dev/graphql/codegen) to auto-generate code based on your Tailor application's GraphQL schema and operations.
 - Datagrid library by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/datagrid))
-- Design systems by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/design-systems))
+- Design Systems components by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/design-systems))
 - Headless UI components by [ArkUI](https://ark-ui.com/) that gives more customizability to design-systems
-- [PandaCSS](https://panda-css.com/) for recipes and theme
+- [PandaCSS](https://panda-css.com/) for recipes and theming for design-systems
 
 ## Requirement
 
