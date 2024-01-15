@@ -8,6 +8,7 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 - Type checing with [TypeScript](https://www.typescriptlang.org/)
 - [Prettier](https://prettier.io/) for code formatting
 - Opinionated preset pack by Tailor ([@tailor-platform/dev-config](https://www.npmjs.com/package/@tailor-platform/dev-config)) that has config for ESLint, TypeScript (tsconfig), and prettier
+- [@apollo/client](https://www.npmjs.com/package/@apollo/client) for GraphQL client
 - [graphql-codegen](https://the-guild.dev/graphql/codegen) to auto-generate code based on your Tailor application's GraphQL schema and operations
 - Datagrid library by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/datagrid))
 - Design System components by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/design-systems))

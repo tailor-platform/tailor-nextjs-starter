@@ -14,6 +14,7 @@
     "pnpm": "8.10.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.9",
     "@ark-ui/react": "~1.1.0",
     "@tailor-platform/datagrid": "^0.5.1",
     "@tailor-platform/design-systems": "^0.11.0",
@@ -21,7 +22,6 @@
     "@types/react": "18.2.35",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
-    "eslint": "8.53.0",
     "eslint-config-next": "14.0.1",
     "graphql": "^16.8.1",
     "next": "14.0.1",
@@ -41,8 +41,8 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@pandacss/dev": "^0.18.2",
     "@tailor-platform/dev-config": "^0.5.0",
+    "eslint": "8.53.0",
     "prettier": "^3.2.2",
-    "ts-node": "^10.9.1",
     "typescript": "5.2.2"
   },
   "peerDependencies": {
