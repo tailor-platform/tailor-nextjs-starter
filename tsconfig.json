@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      // NOTE: do not map `@types` alias here to avoid conflict on resolution to `node_modules/@types`
+      "@styles/*": ["styles/*"],
+      "@libs/*": ["libs/*"],
+      "@components/*": ["components/*"],
+      "@graphql/*": ["graphql/*"],
+      "@apptypes/*": ["types/*"],
+      "@modules/*": ["modules/*"],
+      "@modules": ["modules"],
+      "@hooks/*": ["hooks/*"],
+      "@app": ["app"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
