@@ -8,9 +8,3 @@ query employees {
     }
   }
 }
-
-mutation login($orgKey: String!, $id: String!, $password: String!) {
-  login(orgKey: $orgKey, id: $id, password: $password) {
-    token
-  }
-}
