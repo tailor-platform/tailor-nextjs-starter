@@ -55,7 +55,6 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 │   ├── styles                    # App-wide styles
 │   └── types
 │       └── graphql.ts            # Generated GQL schema definitions in TypeScript which is imported from graphql/schema.generated.ts
-├── tailwind.config.js            # Configuration for TailwindCSS
 └── tsconfig.json                 # TypeScript configuration
 ```
 
