@@ -1,4 +1,12 @@
 import { defineConfig } from "@pandacss/dev";
+import {
+  globalCss,
+  recipes,
+  slotRecipes,
+  textStyles,
+  tokens,
+  semanticTokens,
+} from "@tailor-platform/design-systems/client";
 
 export default defineConfig({
   // Whether to use css reset
@@ -15,8 +23,21 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      recipes,
+      slotRecipes,
+      textStyles,
+      tokens: {
+        ...tokens,
+      },
+      semanticTokens: {
+        ...semanticTokens,
+      },
+    },
   },
+
+  // Global CSS
+  globalCss,
 
   // Emit styled-system as package
   emitPackage: true,
