@@ -32,7 +32,7 @@ const config: CodegenConfig = {
   hooks: {
     afterAllFileWrite: ["eslint --fix", "prettier --write"],
   },
-  schema: "https://crm-gzgixosz.erp.dev/query",
+  schema: "https://hris-koqcpudc.erp.dev/query",
   generates: {
     "src/types/graphql.ts": {
       config: generateConfig,
