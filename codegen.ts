@@ -26,13 +26,14 @@ const generateConfig = {
   },
 };
 
-// TODO: This starter configures the backend with our CRM template (you can see it at https://www.tailor.tech/templates/crm) as example
-// Replace the `schema` below with your own GraphQL backend deployed on Tailor Platform as needed.
+// TODO: This starter configures the backend with our CRM template (you can see it at https://www.tailor.tech/templates/hris) as example
+// Replace the `schema` below with your own GraphQL backend deployed on Tailor Platform as needed
+// You also have to implement your own login page in that case that uses `login` mutation in schema.graphql
 const config: CodegenConfig = {
   hooks: {
     afterAllFileWrite: ["eslint --fix", "prettier --write"],
   },
-  schema: "https://hris-koqcpudc.erp.dev/query",
+  schema: "http://localhost:8000/query",
   generates: {
     "src/types/graphql.ts": {
       config: generateConfig,
