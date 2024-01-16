@@ -1,16 +1,15 @@
 {
   "extends": "@tailor-platform/dev-config/typescript/nextjs",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+  ],
   "compilerOptions": {
     "sourceMap": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@tailor-platform/styled-system/*": [
-        "./node_modules/@tailor-platform/styled-system/*"
-      ],
-      "@tailor-platform/design-systems/client": [
-        "./node_modules/@tailor-platform/design-systems/dist/client"
-      ]
     },
     "target": "es6"
   }
