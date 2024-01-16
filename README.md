@@ -105,7 +105,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Codegen
 
-This project starter is configured to use graphql-codegen which generates TypeScript code from GQL schema definotion (`src/graphql/schema.graphql`)
+This project starter is configured to use graphql-codegen which generates TypeScript code from GQL schema definition (`src/graphql/schema.graphql`)
 
 Save your GraphQL queries and mutations in `src/graphql/schema.graphql`. Then, run the codegen script:
 
@@ -118,6 +118,8 @@ By the preset in this starter, the command above will generate the two files as 
 * `src/types/graphql.ts` ... a file with TypeScript definition of GraphQL schema
 * `src/graphql/schema.generated.ts` ... a file with a set of functions to call your Tailor application's API easily. 
   * This file is expected to be imported from pages/components to query data from and mutate data on GraphQL API backend.
+
+Recommnded to see [the tutorial for graphql-codegen](https://www.apollographql.com/tutorials/lift-off-part1/09-codegen) if you are not really familiar with it.
 
 ## Styled systems
 
