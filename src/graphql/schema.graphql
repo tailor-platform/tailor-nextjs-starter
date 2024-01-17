@@ -1,0 +1,10 @@
+query employees {
+  employees {
+    collection {
+      id
+      employeeCode
+      firstName
+      lastName
+    }
+  }
+}
