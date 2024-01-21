@@ -1,22 +1,23 @@
 "use client";
 
 import { Button, Input } from "@tailor-platform/design-systems";
-import { VStack, Container, Box } from "@tailor-platform/styled-system/jsx";
-import { skeletonLoader } from "@tailor-platform/styled-system/recipes";
+import { VStack } from "@tailor-platform/styled-system/jsx";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Form } from "@tailor-platform/design-systems/client";
-import { useCallback, useEffect } from "react";
+import {ReactNode, useCallback, useEffect} from "react";
 import { FirebaseError } from '@firebase/util'
+import { UserCredential } from "firebase/auth";
 import {
-  useAuthUser,
   SAMLAuthProvider,
   signInWithEmailAndPassword,
   signInWithRedirect,
   getRedirectResult,
 } from '@/libs/google-firebase-client/firebase';
 import {useTailorFirebase} from "@/libs/google-firebase-client/provider";
+import {useTailorFirebaseUtils} from "@/libs/google-firebase-client/hooks";
+import {Session} from "@/libs/google-firebase-client/types";
 
 type FormInput = {
   username: string;
@@ -31,33 +32,56 @@ const FormSchema = z
   .required();
 
 export type LoginProps = {
+  title?: string;
+  header?: ReactNode;
+  footer?: ReactNode;
+  loginButton?: string;
+  identityProviderName?: string;
+  identityProvider?: string;
   tenantId: string;
-  onLoginSuccess?: () => void;
+  onLoginSuccess?: (user: Session) => void;
   onLoginFailure?: (code: string, message: string) => void;
 }
 
 // https://ark-ui.com/docs/components/toast
 const FirebaseLoginUI = ({
+  title,
+  header,
+  footer,
+  loginButton,
+  identityProviderName,
+  identityProvider,
     onLoginSuccess,
     onLoginFailure
   }: LoginProps) => {
-  const config = useTailorFirebase();
-  const auth = config.auth;
-  const {user, loading} = useAuthUser();
-
+  const { auth } = useTailorFirebase();
+  const { exchangeTokenForSession } = useTailorFirebaseUtils();
+  const handleTailorLogin = useCallback(async (cred: UserCredential) => {
+    const idToken = await cred.user.getIdToken();
+    try {
+      const session = await exchangeTokenForSession(idToken);
+      if (onLoginSuccess) onLoginSuccess(session);
+    } catch (error) {
+        if (onLoginFailure) onLoginFailure("auth", error.message);
+    }
+  }, [exchangeTokenForSession, onLoginFailure, onLoginSuccess])
   useEffect(() => {
-    getRedirectResult(auth).catch((err) => {
-      if (err instanceof FirebaseError) {
-        if (onLoginFailure) onLoginFailure(err.code, err.message);
+    (async () => {
+      try {
+        const cred = await getRedirectResult(auth);
+        await handleTailorLogin(cred);
+      } catch (error) {
+        if (error instanceof FirebaseError) {
+          if (onLoginFailure) onLoginFailure(error.code, error.message);
+        }
       }
-    })
-  }, [auth, onLoginFailure]);
+    })();
+  }, [auth, exchangeTokenForSession, handleTailorLogin, onLoginFailure, onLoginSuccess]);
 
   const handleSignInWithSSO = useCallback(async () => {
     try {
       const provider = new SAMLAuthProvider('saml.okta');
       // https://firebase.google.com/docs/reference/js/auth.md?hl=ja#signinwithredirect_770f816
-
       await signInWithRedirect(auth, provider);
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -68,25 +92,14 @@ const FirebaseLoginUI = ({
 
   const handleFormSubmit: SubmitHandler<FormInput> = useCallback(async (form) => {
     try {
-      await signInWithEmailAndPassword(auth, form.username, form.password);
-      if (onLoginSuccess) onLoginSuccess();
+      const cred = await signInWithEmailAndPassword(auth, form.username, form.password);
+      await handleTailorLogin(cred)
     } catch (error) {
       if (error instanceof FirebaseError) {
         if (onLoginFailure) onLoginFailure(error.code, error.message);
       }
     }
-  }, [auth, onLoginSuccess, onLoginFailure]);
-
-  const handleSignOut = useCallback(async () => {
-    try {
-      // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signout
-      await signOut(auth);
-    } catch (error) {
-      if (error instanceof FirebaseError) {
-        if (onLoginFailure) onLoginFailure(error.code, error.message);
-      }
-    }
-  }, [auth, onLoginFailure]);
+  }, [auth, handleTailorLogin, onLoginFailure]);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -96,16 +109,6 @@ const FirebaseLoginUI = ({
     },
   });
 
-  if (loading) {
-    return (
-      <Container w="400px" p={10}>
-        <Box className={skeletonLoader()}>
-          loading...
-        </Box>
-      </Container>
-    );
-  }
-
   return (
     <Form.Root {...form} >
       <form
@@ -113,9 +116,8 @@ const FirebaseLoginUI = ({
         className="w-2/3 space-y-6"
       >
         <VStack>
-          <h1 className="text-3xl font-bold text-center">Login</h1>
-          {user && <p>ログイン済み: {user.email}</p>}
-
+          <h1 className="text-3xl font-bold text-center">{title || "Login"}</h1>
+          {header}
           <Form.Field
             control={form.control}
             name="username"
@@ -145,16 +147,14 @@ const FirebaseLoginUI = ({
           />
 
           <Button variant="primary" size="lg" width="full" type="submit" mt={4} >
-            Login
+            {loginButton|| "Login"}
           </Button>
-          <Button variant="primary" size="lg" width="full" type="button" mt={4} onClick={handleSignInWithSSO}>
-            SignIn With SSO
-          </Button>
-          {user &&
-            <Button variant="primary" size="lg" width="full" type="button" mt={4} onClick={handleSignOut}>
-              Logout
+          {identityProvider &&
+            <Button variant="primary" size="lg" width="full" type="button" mt={4} onClick={handleSignInWithSSO}>
+              {identityProviderName || `Login with ${identityProvider}`}
             </Button>
           }
+          {footer}
         </VStack>
       </form>
     </Form.Root>

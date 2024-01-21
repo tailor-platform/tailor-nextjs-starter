@@ -9,20 +9,15 @@ export const useTailorFirebaseUtils = () => {
 
   const exchangeTokenForSession = async (
     idToken: string,
-  ): Promise<Session | ErrorResponse> => {
+  ): Promise<Session> => {
     const formData = new FormData();
     formData.append("idToken", idToken);
-    try {
-      const res = await fetch(makeApiUrl(authServiceTokenPath), {
-        method: "POST",
-        body: formData,
-      });
-
-      const text = await res.text();
-      return JSON.parse(text) as Session;
-    } catch (err: unknown) {
-      return { error: err instanceof Error ? err.message : "" };
-    }
+    const res = await fetch(makeApiUrl(authServiceTokenPath), {
+      method: "POST",
+      body: formData,
+    });
+    const text = await res.text();
+    return JSON.parse(text) as Session;
   };
 
   const refreshToken = async (

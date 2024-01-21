@@ -1,6 +1,6 @@
 "use client";
 import { onAuthStateChanged,User } from "firebase/auth";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import { signOut } from "firebase/auth";
 import { useTailorFirebase } from "@/libs/google-firebase-client/provider";
 

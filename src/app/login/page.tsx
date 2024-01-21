@@ -1,21 +1,31 @@
 "use client";
 
-import { Container, Box } from "@tailor-platform/styled-system/jsx";
-import { skeletonLoader } from "@tailor-platform/styled-system/recipes";
-import { useParams, useRouter } from "next/navigation";
+import { Container } from "@tailor-platform/styled-system/jsx";
+import {useParams, useRouter, useSearchParams} from "next/navigation";
 import {useCallback, useEffect} from "react";
 import {FirebaseError} from "@firebase/util";
+import {UserAction, useUser} from "@tailor-platform/client";
 import FirebaseLoginUI from '@/libs/google-firebase-client/auth/login';
-import { useAuthUser } from "@/libs/google-firebase-client/firebase";
-import {useOverlay} from "@/hooks/useOverlay";
-
+import { useOverlay } from "@/hooks/useOverlay";
+import {Session} from "@/libs/google-firebase-client/types";
 
 const Login = () => {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get("redirect")
   const { tenant: tenantId } = useParams<{ tenant: string }>()
+  const { dispatchUser, user } = useUser();
   const { showToast } = useOverlay();
-  const onLoginSuccess = useCallback(() => {
-    // TODO: login process
-  }, [])
+  const onLoginSuccess = useCallback((session: Session) => {
+    dispatchUser({
+      type: "update",
+      payload: {
+        id: session.user_id,
+      },
+      token: session.access_token
+    } as UserAction);
+    router.push(redirect || "/")
+  }, [dispatchUser, router, redirect])
   const onLoginFailure = useCallback((err: FirebaseError) => {
     switch (err) {
       case "auth/user-not-found":
@@ -27,34 +37,27 @@ const Login = () => {
         showToast({title:"Failed to Login", description:"too many login request"})
         break
       default:
-        console.error(err)
+        console.log(err);
         showToast({title:"Failed to Login", description:"Failed to login"})
         break
     }
   }, [showToast])
 
-  const router = useRouter()
-  const {user, loading} = useAuthUser();
   useEffect(() => {
-    if (user) {
+    if (user && user.id !== "") {
       router.push("/")
     }
   }, [router, user])
-
-  if (loading) {
-    return (
-      <Container w="400px" p={10}>
-        <Box className={skeletonLoader()}>
-          loading...
-        </Box>
-      </Container>
-    );
-  }
 
   return (
     <Container w="400px" p={10}>
       <FirebaseLoginUI
         tenantId={tenantId}
+        title={"Teams login"}
+        header={<div>header</div>}
+        footer={<div>footer</div>}
+        identityProvider={"saml.okta"}
+        identityProviderName={"Login with Okta"}
         onLoginFailure={onLoginFailure}
         onLoginSuccess={onLoginSuccess}
       />

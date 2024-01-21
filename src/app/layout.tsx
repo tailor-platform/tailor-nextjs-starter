@@ -1,14 +1,18 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { headers } from "next/headers";
 import React, { Suspense } from "react";
 import {ErrorBoundary} from "next/dist/client/components/error-boundary";
+import { Flex } from "@tailor-platform/styled-system/jsx";
 import { TailorFirebaseProvider } from "@/libs/google-firebase-client"
 import { ProviderConfig } from "@/libs/google-firebase-client/provider";
 import { TeamsProvider } from "@/components/providers/teams";
 import NotFound from "@/app/not-found";
 import Loading from "@/components/templates/Loading";
 import Error from "@/components/templates/Error";
+import {getTenantId} from "@/libs/tenant";
+import {Header} from "@/components/templates/Header";
+import {QueryToaster} from "@/components/organisms/queryToaster";
+import AuthGuard from "@/components/atoms/authGuard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,21 +30,6 @@ const firebaseConfig: ProviderConfig = {
   }
 };
 
-// <tenantId>.example.com
-const getTenantId = async () => {
-  "use server";
-  return new Promise<string>((resolve) => {
-    const headersList = headers();
-    const host = headersList.get('host');
-    const hs = host.split(".")
-    if (hs.length >= 2) {
-      resolve(hs[0]);
-    } else {
-      resolve(undefined);
-    }
-  })
-}
-
 const tenantIdMap = {
   "tailor": "tailor-zwnkv",
 }
@@ -50,19 +39,24 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   if (!tenantIdMap[tenantId]) {
     return <NotFound />
   }
-
   return (
     <html lang="en">
       <body className={inter.className}>
-          <TeamsProvider tenantId={tenantId} notFound={<NotFound />}>
-            <TailorFirebaseProvider tenantId={tenantIdMap[tenantId]} config={firebaseConfig}>
-              <ErrorBoundary FallbackComponent={Error}>
+      <ErrorBoundary FallbackComponent={Error}>
+        <TeamsProvider tenantId={tenantId} notFound={<NotFound />}>
+          <TailorFirebaseProvider tenantId={tenantIdMap[tenantId]} config={firebaseConfig}>
+            <AuthGuard loginPath={'/login'} publicPaths={["/login"]}>
+              <Header title={"test"} />
+              <Flex minH="100%">
+                <QueryToaster />
                 <Suspense fallback={<Loading />}>
-                {children}
+                  {children}
                 </Suspense>
-              </ErrorBoundary>
-            </TailorFirebaseProvider>
-          </TeamsProvider>
+              </Flex>
+            </AuthGuard>
+          </TailorFirebaseProvider>
+        </TeamsProvider>
+      </ErrorBoundary>
       </body>
     </html>
   );

@@ -31,6 +31,7 @@ export const TeamsProvider = ({
     if (tenantId === undefined) {
       return notFound
     }
+
     return <TeamsContext.Provider value={{
       tenantId: tenantId,
     }}>

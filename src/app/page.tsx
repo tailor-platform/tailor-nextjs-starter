@@ -1,33 +1,33 @@
 "use client";
 
 import {
-  Container,
+  Box,
 } from "@tailor-platform/styled-system/jsx";
+import { User } from "firebase/auth";
 import {useAuthUser} from "@/libs/google-firebase-client/firebase";
-import {useState} from "react";
+
+const ProfileDebug = ({user}: User) => {
+  const val = JSON.stringify(user, null, 2)
+  return (
+    <ul>
+      <li>user: {user?.email}</li>
+      <li>tenantId: {user?.tenantId}</li>
+      {user && <li>user: {user?.email} <pre>{val}</pre></li>}
+    </ul>
+  )
+}
 
 const Home = () => {
-  const [idToken, setIdToken] = useState<string | null>(null);
-  const {user, loading, signOut} = useAuthUser();
-  if (loading) return (<Container w="100%" p={10}><h1>loading...</h1></Container>);
-  const val = JSON.stringify(user, null, 2)
-  user.getIdToken().then((token) => {
-    setIdToken(token);
-  });
+  const {user, signOut} = useAuthUser();
   return (
-    <Container w="100%" p={10}>
+    <Box w="full">
       <h1>home</h1>
+      <ProfileDebug user={user} />
       <ul>
-        {user && [
-          <li key={1}>user: {user.email}</li>,
-          <li key={2}>tenantId: {user.tenantId}</li>,
-          <li key={2}>idToken: {idToken}</li>,
-        ]}
-        {user && <li>user: {user.email} <pre>{val}</pre></li>}
         <li><a href={"/login"}>login</a></li>
         <button onClick={signOut}>logout</button>
       </ul>
-    </Container>
+    </Box>
   );
 };
 
