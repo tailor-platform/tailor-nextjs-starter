@@ -39,7 +39,7 @@ export const Header = ({title}: HeaderProps) => {
     <Box bg="accent.fg" borderBottom="1px solid" borderColor="border.default">
       <AppBar bg="accent.fg" border="1px solid" borderColor="border.default">
         <Text className={classes.title}>{title}</Text>
-        {user &&
+        {(user && user.id !== '') &&
         <Menu>
           <MenuTrigger className={menuTrigger.root}>
             <Flex aria-label="Open" className={menuTrigger.content}>

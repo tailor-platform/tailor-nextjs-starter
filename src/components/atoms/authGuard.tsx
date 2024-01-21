@@ -14,9 +14,7 @@ const AuthGuard = ({children, publicPaths, loginPath}: AuthGuardProps) => {
   const pathname = usePathname()
   const router = useRouter()
   useEffect(() => {
-    console.log(loading, user)
     if (loading) {
-
       return
     }
     if (publicPaths.includes(pathname)) {
@@ -26,7 +24,6 @@ const AuthGuard = ({children, publicPaths, loginPath}: AuthGuardProps) => {
       router.push(loginPath + "?redirect=" + encodeURI(pathname))
     }
   }, [loginPath, pathname, publicPaths, router, user, loading])
-
   return (
     <>{children}</>
   )

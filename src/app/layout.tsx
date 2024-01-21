@@ -46,7 +46,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         <TeamsProvider tenantId={tenantId} notFound={<NotFound />}>
           <TailorFirebaseProvider tenantId={tenantIdMap[tenantId]} config={firebaseConfig}>
             <AuthGuard loginPath={'/login'} publicPaths={["/login"]}>
-              <Header title={"test"} />
+              <Header title={"Teams"} />
               <Flex minH="100%">
                 <QueryToaster />
                 <Suspense fallback={<Loading />}>
