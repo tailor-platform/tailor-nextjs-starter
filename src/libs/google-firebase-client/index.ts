@@ -1,0 +1,1 @@
+export { TailorFirebaseProvider } from './provider';

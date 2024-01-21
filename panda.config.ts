@@ -41,4 +41,7 @@ export default defineConfig({
 
   // Emit styled-system as package
   emitPackage: true,
+
+  // Output directory
+  outdir: "@tailor-platform/styled-system",
 });
