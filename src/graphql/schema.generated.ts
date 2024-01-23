@@ -10,14 +10,14 @@ const defaultOptions = {} as const;
 export type EmployeesQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type EmployeesQuery = {
-  employees?: {
+  employees: {
     collection: Array<{
       id: string;
-      employeeCode?: string | null;
-      firstName?: string | null;
-      lastName?: string | null;
+      employeeCode: string;
+      firstName: string;
+      lastName: string;
     }>;
-  } | null;
+  };
 };
 
 export const EmployeesDocument = gql`

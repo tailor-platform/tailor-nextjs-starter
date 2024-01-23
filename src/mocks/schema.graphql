@@ -1,0 +1,14 @@
+type Query {
+  employees: EmployeeCollection!
+}
+
+type EmployeeCollection {
+  collection: [Employee!]!
+}
+
+type Employee {
+  id: ID!
+  employeeCode: String!
+  firstName: String!
+  lastName: String!
+}
