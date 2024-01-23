@@ -26,7 +26,8 @@ const generateConfig = {
   },
 };
 
-// NOTE: this starter application is using hardcoded GraphQL mock backend
+// NOTE: this starter application is using hardcoded GraphQL mock with MSW
+// Change `schema` field the following configuration for you own GQL API backend
 const config: CodegenConfig = {
   overwrite: true,
   hooks: {
