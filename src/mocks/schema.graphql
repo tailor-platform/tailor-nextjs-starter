@@ -1,14 +1,29 @@
+scalar DateTime
+
 type Query {
-  employees: EmployeeCollection!
+  tasks: TaskCollection!
 }
 
-type EmployeeCollection {
-  collection: [Employee!]!
+type Mutation {
+  createTask(input: CreateTaskInput!): ID
 }
 
-type Employee {
+input CreateTaskInput {
+  name: String!
+  description: String!
+  startAt: DateTime
+  endAt: DateTime
+}
+
+type TaskCollection {
+  collection: [Task!]!
+}
+
+
+type Task {
   id: ID!
-  employeeCode: String!
-  firstName: String!
-  lastName: String!
+  name: String!
+  description: String!
+  startAt: DateTime
+  endAt: DateTime
 }

@@ -3,20 +3,23 @@ import { createMiddleware } from "@mswjs/http-middleware";
 import cors from "cors";
 import express from "express";
 import { HttpResponse, graphql } from "msw";
-import { EmployeesDocument } from "@/graphql/schema.generated";
+import { TasksDocument } from "@/graphql/schema.generated";
 
-const buildMockEmployee = () => ({
-  id: faker.string.uuid(),
-  employeeCode: faker.string.alphanumeric({
-    casing: "upper",
-    length: 8,
-  }),
-  firstName: faker.person.firstName(),
-  lastName: faker.person.lastName(),
-});
+const buildMockEmployee = () => {
+  const from = faker.date.anytime();
+  const to = faker.date.future({ refDate: from });
+
+  return {
+    id: faker.string.uuid(),
+    name: faker.lorem.words(),
+    description: faker.lorem.paragraph(),
+    startAt: from,
+    endAt: to,
+  };
+};
 
 const handlers = [
-  graphql.query(EmployeesDocument, () => {
+  graphql.query(TasksDocument, () => {
     return HttpResponse.json({
       data: {
         employees: {

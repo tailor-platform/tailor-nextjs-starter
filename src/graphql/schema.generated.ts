@@ -7,91 +7,85 @@ import * as Types from "../types/graphql";
 import { gql } from "@apollo/client";
 import * as Apollo from "@apollo/client";
 const defaultOptions = {} as const;
-export type EmployeesQueryVariables = Types.Exact<{ [key: string]: never }>;
+export type TasksQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-export type EmployeesQuery = {
-  employees: {
+export type TasksQuery = {
+  tasks: {
     collection: Array<{
       id: string;
-      employeeCode: string;
-      firstName: string;
-      lastName: string;
+      name: string;
+      description: string;
+      startAt?: string | null;
+      endAt?: string | null;
     }>;
   };
 };
 
-export const EmployeesDocument = gql`
-  query employees {
-    employees {
+export const TasksDocument = gql`
+  query tasks {
+    tasks {
       collection {
         id
-        employeeCode
-        firstName
-        lastName
+        name
+        description
+        startAt
+        endAt
       }
     }
   }
 `;
 
 /**
- * __useEmployeesQuery__
+ * __useTasksQuery__
  *
- * To run a query within a React component, call `useEmployeesQuery` and pass it any options that fit your needs.
- * When your component renders, `useEmployeesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useTasksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTasksQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useEmployeesQuery({
+ * const { data, loading, error } = useTasksQuery({
  *   variables: {
  *   },
  * });
  */
-export const useEmployeesQuery = (
-  baseOptions?: Apollo.QueryHookOptions<
-    EmployeesQuery,
-    EmployeesQueryVariables
-  >,
+export const useTasksQuery = (
+  baseOptions?: Apollo.QueryHookOptions<TasksQuery, TasksQueryVariables>,
 ) => {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<EmployeesQuery, EmployeesQueryVariables>(
-    EmployeesDocument,
+  return Apollo.useQuery<TasksQuery, TasksQueryVariables>(
+    TasksDocument,
     options,
   );
 };
-export const useEmployeesLazyQuery = (
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    EmployeesQuery,
-    EmployeesQueryVariables
-  >,
+export const useTasksLazyQuery = (
+  baseOptions?: Apollo.LazyQueryHookOptions<TasksQuery, TasksQueryVariables>,
 ) => {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<EmployeesQuery, EmployeesQueryVariables>(
-    EmployeesDocument,
+  return Apollo.useLazyQuery<TasksQuery, TasksQueryVariables>(
+    TasksDocument,
     options,
   );
 };
-export const useEmployeesSuspenseQuery = (
+export const useTasksSuspenseQuery = (
   baseOptions?: Apollo.SuspenseQueryHookOptions<
-    EmployeesQuery,
-    EmployeesQueryVariables
+    TasksQuery,
+    TasksQueryVariables
   >,
 ) => {
   const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<EmployeesQuery, EmployeesQueryVariables>(
-    EmployeesDocument,
+  return Apollo.useSuspenseQuery<TasksQuery, TasksQueryVariables>(
+    TasksDocument,
     options,
   );
 };
-export type EmployeesQueryHookResult = ReturnType<typeof useEmployeesQuery>;
-export type EmployeesLazyQueryHookResult = ReturnType<
-  typeof useEmployeesLazyQuery
+export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
+export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
+export type TasksSuspenseQueryHookResult = ReturnType<
+  typeof useTasksSuspenseQuery
 >;
-export type EmployeesSuspenseQueryHookResult = ReturnType<
-  typeof useEmployeesSuspenseQuery
->;
-export type EmployeesQueryResult = Apollo.QueryResult<
-  EmployeesQuery,
-  EmployeesQueryVariables
+export type TasksQueryResult = Apollo.QueryResult<
+  TasksQuery,
+  TasksQueryVariables
 >;

@@ -1,10 +1,11 @@
-query employees {
-  employees {
+query tasks {
+  tasks {
     collection {
       id
-      employeeCode
-      firstName
-      lastName
+      name
+      description
+      startAt
+      endAt
     }
   }
 }

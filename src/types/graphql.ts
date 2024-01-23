@@ -29,19 +29,36 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean };
   Int: { input: number; output: number };
   Float: { input: number; output: number };
+  DateTime: { input: unknown; output: string };
 };
 
-export type Employee = {
-  employeeCode: Scalars["String"]["output"];
-  firstName: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
-  lastName: Scalars["String"]["output"];
+export type CreateTaskInput = {
+  description: Scalars["String"]["input"];
+  endAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  name: Scalars["String"]["input"];
+  startAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
-export type EmployeeCollection = {
-  collection: Array<Employee>;
+export type Mutation = {
+  createTask?: Maybe<Scalars["ID"]["output"]>;
+};
+
+export type MutationCreateTaskArgs = {
+  input: CreateTaskInput;
 };
 
 export type Query = {
-  employees: EmployeeCollection;
+  tasks: TaskCollection;
+};
+
+export type Task = {
+  description: Scalars["String"]["output"];
+  endAt?: Maybe<Scalars["DateTime"]["output"]>;
+  id: Scalars["ID"]["output"];
+  name: Scalars["String"]["output"];
+  startAt?: Maybe<Scalars["DateTime"]["output"]>;
+};
+
+export type TaskCollection = {
+  collection: Array<Task>;
 };
