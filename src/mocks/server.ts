@@ -35,7 +35,7 @@ const app = express();
 app.use(
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   cors({
-    origin: ["http://localhost:4500"],
+    origin: ["http://localhost:4500", "http://localhost:3000"],
   }),
 );
 app.use(express.json());
