@@ -10,6 +10,12 @@
     "sourceMap": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@tailor-platform/styled-system/*": [
+        "./node_modules/@tailor-platform/styled-system/*"
+      ],
+      "@tailor-platform/design-systems/client": [
+        "./node_modules/@tailor-platform/design-systems/dist/client"
+      ]
     },
     "target": "es6"
   }

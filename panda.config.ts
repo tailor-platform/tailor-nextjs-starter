@@ -41,4 +41,7 @@ export default defineConfig({
 
   // Emit styled-system as package
   emitPackage: true,
+
+  // The path to emit styling components by PandaCSS
+  outdir: "@tailor-platform/styled-system",
 });
