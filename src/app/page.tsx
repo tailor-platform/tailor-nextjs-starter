@@ -1,3 +1,4 @@
+"use client";
 import { Button, Heading, Text } from "@tailor-platform/design-systems";
 import {
   Box,
