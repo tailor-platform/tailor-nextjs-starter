@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <Box bg="accent.fg" borderBottom="1px solid" borderColor="border.default">
       <AppBar bg="accent.fg" border="1px solid" borderColor="border.default">
-        <Text className={classes.title}>Tailor Next.js starter</Text>
+        <Text className={classes.title}>Tailor Next.js Starter App</Text>
       </AppBar>
     </Box>
   );
