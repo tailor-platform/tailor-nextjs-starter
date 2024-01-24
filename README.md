@@ -21,12 +21,13 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 - Type checking with [TypeScript](https://www.typescriptlang.org/)
 - [Prettier](https://prettier.io/) for code formatting
 - Opinionated preset pack by Tailor ([@tailor-platform/dev-config](https://www.npmjs.com/package/@tailor-platform/dev-config)) that has config for ESLint, TypeScript (tsconfig), and prettier
-- [@apollo/client](https://www.npmjs.com/package/@apollo/client) for GraphQL client
+- [@tailor-platform/client](https://www.npmjs.com/package/@tailor-platform/client) for GraphQL client
 - [graphql-codegen](https://the-guild.dev/graphql/codegen) to auto-generate code based on your Tailor application's GraphQL schema and operations
 - Datagrid library by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/datagrid))
 - Design System components by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/design-systems))
 - Headless UI components by [ArkUI](https://ark-ui.com/) that gives more customizability to design-systems
 - [PandaCSS](https://panda-css.com/) for recipes and theming for design-systems
+- [MSW](https://mswjs.io/) for mocked backend that helps rapid development.
 
 ## Requirement
 
@@ -51,6 +52,9 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 │   │   └── schema.graphql        # GraphQL schema that contains GQL operations to generate by graphql-codegen
 │   ├── hooks                     # A directory to place React hooks
 │   ├── libs                      # General utilities
+│   ├── mocks                     # Backend mocking server
+│   │   └── schema.graphql        # Mock GraphQL schema
+│   │   └── server.ts             # Mock backend that serves GraphQL API with MSW
 │   ├── modules                   # Domain specific utilities
 │   ├── styles                    # App-wide styles
 │   └── types
@@ -95,7 +99,13 @@ pnpm install
 
 ### Run
 
-Then, you can now start your development server with:
+Before starting the frontend, you need to run GraphQL mock server.
+
+```bash
+pnpm run mock
+```
+
+Then, you can now start your frontend with:
 
 ```bash
 pnpm run dev

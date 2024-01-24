@@ -1,0 +1,29 @@
+scalar DateTime
+
+type Query {
+  tasks: TaskCollection!
+}
+
+type Mutation {
+  createTask(input: CreateTaskInput!): ID
+}
+
+input CreateTaskInput {
+  name: String!
+  description: String!
+  startAt: DateTime
+  endAt: DateTime
+}
+
+type TaskCollection {
+  collection: [Task!]!
+}
+
+
+type Task {
+  id: ID!
+  name: String!
+  description: String!
+  startAt: DateTime
+  endAt: DateTime
+}

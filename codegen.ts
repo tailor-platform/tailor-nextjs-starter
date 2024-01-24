@@ -26,14 +26,14 @@ const generateConfig = {
   },
 };
 
-// TODO: This starter configures the backend with our CRM template (you can see it at https://www.tailor.tech/templates/hris) as example
-// Replace the `schema` below with your own GraphQL backend deployed on Tailor Platform as needed
-// You also have to implement your own login page in that case that uses `login` mutation in schema.graphql
+// NOTE: this starter application is using hardcoded GraphQL mock with MSW
+// Change `schema` field the following configuration for you own GQL API backend
 const config: CodegenConfig = {
+  overwrite: true,
   hooks: {
     afterAllFileWrite: ["eslint --fix", "prettier --write"],
   },
-  schema: "http://localhost:8000/query",
+  schema: "src/mocks/schema.graphql",
   generates: {
     "src/types/graphql.ts": {
       config: generateConfig,

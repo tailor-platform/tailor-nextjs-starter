@@ -1,0 +1,41 @@
+tr {
+  font-size: 12px;
+  height: 30px;
+  padding: 4px;
+}
+
+tr:nth-child(2n) {
+  background-color: #fafafa;
+}
+
+td {
+  padding: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  padding: 8px 4px;
+  font-size: 12px;
+  background-color: #eceff1;
+  border: none;
+}
+
+.pos_absolute {
+  height: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  width: 3px;
+}
+
+.checkbox__th.pos_absolute:last-child {
+  opacity: 0;
+}
+
+.opacity_0 {
+  opacity: 100;
+  background-color: #cfd8dc;
+}
