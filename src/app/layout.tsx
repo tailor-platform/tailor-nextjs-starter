@@ -29,7 +29,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <TailorProvider graphqlEndpoint="http://localhost:8000">
               <Header />
               <Box p={5}>
-                <Heading p={3}>Task Management App</Heading>
+                <Heading p={3}>Task Management</Heading>
                 {children}
               </Box>
             </TailorProvider>
