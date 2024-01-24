@@ -4,7 +4,7 @@ import { DataGrid, useDataGrid } from "@tailor-platform/datagrid";
 import { Button } from "@tailor-platform/design-systems";
 import { useTasksSuspenseQuery } from "@/graphql/schema.generated";
 
-const Home = () => {
+const Page = () => {
   const { data, refetch } = useTasksSuspenseQuery();
   const table = useDataGrid({
     columns: [
@@ -40,4 +40,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Page;
