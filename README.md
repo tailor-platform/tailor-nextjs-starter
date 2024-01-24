@@ -99,7 +99,13 @@ pnpm install
 
 ### Run
 
-Then, you can now start your development server with:
+Before starting the frontend, you need to run GraphQL mock server.
+
+```bash
+pnpm run mock
+```
+
+Then, you can now start your frontend with:
 
 ```bash
 pnpm run dev
