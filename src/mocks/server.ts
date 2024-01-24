@@ -12,7 +12,7 @@ const buildMockTask = () => {
   return {
     id: faker.string.uuid(),
     name: faker.lorem.words(),
-    description: faker.lorem.paragraph(),
+    description: faker.lorem.paragraph(1),
     startAt: from,
     endAt: to,
   };
