@@ -5,7 +5,7 @@ import express from "express";
 import { HttpResponse, graphql } from "msw";
 import { TasksDocument } from "@/graphql/schema.generated";
 
-const buildMockEmployee = () => {
+const buildMockTask = () => {
   const from = faker.date.anytime();
   const to = faker.date.future({ refDate: from });
 
@@ -22,8 +22,8 @@ const handlers = [
   graphql.query(TasksDocument, () => {
     return HttpResponse.json({
       data: {
-        employees: {
-          collection: Array.from({ length: 5 }).map(() => buildMockEmployee()),
+        tasks: {
+          collection: Array.from({ length: 5 }).map(() => buildMockTask()),
         },
       },
     });
