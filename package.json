@@ -19,6 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.8.9",
     "@ark-ui/react": "~1.1.0",
+    "@tailor-platform/client": "^0.4.0",
     "@tailor-platform/datagrid": "^0.5.1",
     "@tailor-platform/design-systems": "^0.11.0",
     "@types/node": "18.18.10",
