@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.9",
-    "@ark-ui/react": "~1.1.0",
+    "@ark-ui/react": "~1.3.0",
+    "@hookform/resolvers": "^3.3.4",
     "@tailor-platform/client": "^0.4.0",
     "@tailor-platform/datagrid": "^0.5.1",
     "@tailor-platform/design-systems": "^0.11.0",
@@ -28,6 +29,7 @@
     "autoprefixer": "10.4.16",
     "eslint-config-next": "14.0.1",
     "graphql": "^16.8.1",
+    "lucide-react": "^0.315.0",
     "next": "14.0.1",
     "postcss": "8.4.31",
     "react": "18.2.0",

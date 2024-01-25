@@ -3,7 +3,7 @@ import { createMiddleware } from "@mswjs/http-middleware";
 import cors from "cors";
 import express from "express";
 import { HttpResponse, graphql } from "msw";
-import { TasksDocument } from "@/graphql/schema.generated";
+import { CreateTaskDocument, TasksDocument } from "@/graphql/schema.generated";
 
 const buildMockTask = () => {
   const from = faker.date.anytime();
@@ -25,6 +25,13 @@ const handlers = [
         tasks: {
           collection: Array.from({ length: 5 }).map(() => buildMockTask()),
         },
+      },
+    });
+  }),
+  graphql.mutation(CreateTaskDocument, () => {
+    return HttpResponse.json({
+      data: {
+        createTask: faker.string.uuid(),
       },
     });
   }),
