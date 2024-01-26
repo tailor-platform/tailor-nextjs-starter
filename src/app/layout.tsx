@@ -22,7 +22,8 @@ export const metadata = {
 };
 
 const firebaseConfig: ProviderConfig = {
-  apiUrl: "https://api.example.com",
+  //apiUrl: "http://teams-eko6uw0gz0.mini.tailor.tech:8080",
+  apiUrl: "https://teams-f810n7r8op.dev.erp.dev",
   firebaseConfig: {
     apiKey: "AIzaSyAHo9YbXdaoRoL3XG8h7J67DxPs8nsjSSY",
     authDomain: "teams-411717.firebaseapp.com",
@@ -30,7 +31,7 @@ const firebaseConfig: ProviderConfig = {
   }
 };
 
-const tenantIdMap = {
+const tenantIdMap:{[key: string]: string} = {
   "tailor": "tailor-zwnkv",
 }
 

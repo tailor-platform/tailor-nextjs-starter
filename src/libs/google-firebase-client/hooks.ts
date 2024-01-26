@@ -9,9 +9,13 @@ export const useTailorFirebaseUtils = () => {
 
   const exchangeTokenForSession = async (
     idToken: string,
+    tenantId?: string,
   ): Promise<Session> => {
     const formData = new FormData();
-    formData.append("idToken", idToken);
+    formData.append("id_token", idToken);
+    if (tenantId) {
+      formData.append("tenant_id", tenantId);
+    }
     const res = await fetch(makeApiUrl(authServiceTokenPath), {
       method: "POST",
       body: formData,

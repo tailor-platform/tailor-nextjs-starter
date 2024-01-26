@@ -43,7 +43,7 @@ export type LoginProps = {
   onLoginFailure?: (code: string, message: string) => void;
 }
 
-// https://ark-ui.com/docs/components/toast
+
 const FirebaseLoginUI = ({
   title,
   header,
@@ -59,12 +59,12 @@ const FirebaseLoginUI = ({
   const handleTailorLogin = useCallback(async (cred: UserCredential) => {
     const idToken = await cred.user.getIdToken();
     try {
-      const session = await exchangeTokenForSession(idToken);
+      const session = await exchangeTokenForSession(idToken, auth?.tenantId);
       if (onLoginSuccess) onLoginSuccess(session);
     } catch (error) {
         if (onLoginFailure) onLoginFailure("auth", error.message);
     }
-  }, [exchangeTokenForSession, onLoginFailure, onLoginSuccess])
+  }, [auth?.tenantId, exchangeTokenForSession, onLoginFailure, onLoginSuccess])
   useEffect(() => {
     (async () => {
       try {
@@ -80,7 +80,7 @@ const FirebaseLoginUI = ({
 
   const handleSignInWithSSO = useCallback(async () => {
     try {
-      const provider = new SAMLAuthProvider('saml.okta');
+      const provider = new SAMLAuthProvider(identityProvider);
       // https://firebase.google.com/docs/reference/js/auth.md?hl=ja#signinwithredirect_770f816
       await signInWithRedirect(auth, provider);
     } catch (error) {
@@ -88,7 +88,7 @@ const FirebaseLoginUI = ({
         if (onLoginFailure) onLoginFailure(error.code, error.message);
       }
     }
-  }, [auth, onLoginFailure]);
+  }, [auth, identityProvider, onLoginFailure]);
 
   const handleFormSubmit: SubmitHandler<FormInput> = useCallback(async (form) => {
     try {
