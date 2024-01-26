@@ -13,8 +13,7 @@
     "prepare": "panda codegen"
   },
   "engines": {
-    "node": "18.x",
-    "pnpm": "8.10.0"
+    "node": "20.x"
   },
   "dependencies": {
     "@apollo/client": "^3.8.9",
@@ -63,6 +62,6 @@
   "peerDependencies": {
     "@babel/traverse": "^7.23.2"
   },
-  "packageManager": "pnpm@8.10.0",
+  "packageManager": "pnpm@8.14.3",
   "prettier": "@tailor-platform/dev-config/prettier"
 }

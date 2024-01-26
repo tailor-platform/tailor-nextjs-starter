@@ -27,11 +27,12 @@ This is a base [Next.js](https://nextjs.org/) application to get you started dev
 - Design System components by Tailor ([@tailor-platform/datagrid](https://www.npmjs.com/package/@tailor-platform/design-systems))
 - Headless UI components by [ArkUI](https://ark-ui.com/) that gives more customizability to design-systems
 - [PandaCSS](https://panda-css.com/) for recipes and theming for design-systems
-- [MSW](https://mswjs.io/) for mocked backend that helps rapid development.
+- [MSW](https://mswjs.io/) on [Express](https://expressjs.com/) for the local mocked backend that helps rapid development
+- [React Hook Form](https://react-hook-form.com/) for building forms with schema validation by [Zod](https://zod.dev/)
 
 ## Requirement
 
-* Node.js 18+ and pnpm
+* Node.js 20+ and pnpm
 
 ## Structure
 
