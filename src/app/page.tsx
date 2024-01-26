@@ -71,8 +71,8 @@ const NewTaskModalContent = (props: { close: () => void }) => {
   };
 
   return (
-    <Stack w="full">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="w_full" onSubmit={handleSubmit(onSubmit)}>
+      <Stack gap={3}>
         <InputGroup label="タスク名" name="name" control={control} />
         <InputGroup label="説明" name="description" control={control} />
         <InputGroup
@@ -82,13 +82,9 @@ const NewTaskModalContent = (props: { close: () => void }) => {
           control={control}
         />
         <InputGroup label="終了日" type="date" name="endAt" control={control} />
-        <Box py={3}>
-          <Button w="full" type="submit">
-            Add
-          </Button>
-        </Box>
-      </form>
-    </Stack>
+        <Button type="submit">Add</Button>
+      </Stack>
+    </form>
   );
 };
 
