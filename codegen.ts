@@ -54,7 +54,6 @@ const config: CodegenConfig = {
       documents: "src/graphql/*.graphql",
       preset: "near-operation-file",
       presetConfig: {
-        extentensions: ".generated.tsx",
         baseTypesPath: "../types/graphql.ts",
       },
       config: generateConfig,

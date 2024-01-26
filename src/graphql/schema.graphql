@@ -9,3 +9,7 @@ query tasks {
     }
   }
 }
+
+mutation createTask($input: CreateTaskInput!) {
+  createTask(input: $input)
+}
